@@ -16,7 +16,7 @@ $ mvn camel:run
 To deploy the project in OSGi. For example using Apache ServiceMix or Apache Karaf. You can run the following command from its shell:
 
 ```
-$ osgi:install -s mvn:cat.bonpreu.apigateway/itemProxy/0.0.1-SNAPSHOT
+$ osgi:install -s mvn:cat.tcr.simulador/simulador21d/0.0.1-SNAPSHOT
 ```
 
 For more help see the Apache Camel documentation:
