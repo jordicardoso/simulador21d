@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<bean id="random" class="random.rndResultats"/>
+
+	<camelContext id="simulador21d"
+		xmlns="http://camel.apache.org/schema/blueprint" useMDCLogging="true">
+
+		<propertyPlaceholder id="properties"
+			location="classpath:/etc/uri.properties" xmlns="http://camel.apache.org/schema/blueprint" />
+
+		<streamCaching id="CacheConfig" bufferSize="100024000"
+			spoolThreshold="100024000" />
+
+		<dataFormats>
+			<json id="json" library="Jackson" />
+			<bindy id="csv" type="Csv" classType="csv.Resultats"/>
+		</dataFormats>
+
+		<route autoStartup="true" id="randomResultats" streamCache="true">
+			<from uri="{{origen}}"/>
+			<unmarshal ref="csv"/>
+			<process ref="random"/>
+			<marshal ref="csv"/>
+			<log message="${headers.CamelFileRelativePath}"/>
+			<toD uri="file:camel/resultats/${headers.CamelFileRelativePath}?fileName=totals.txt"/>
+			<to uri="mock:result"/>
+		</route>
+
+
+	</camelContext>
+</blueprint>

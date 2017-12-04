@@ -1,0 +1,46 @@
+package cat.tcr.simulador;
+
+import static org.hamcrest.CoreMatchers.containsString;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
+import org.junit.Test;
+
+import java.io.InputStream;
+
+/**
+ * The Class itemOSPTest.
+ */
+public class simuladorTest extends CamelBlueprintTestSupport {
+
+	private static final String URI_START = "direct:start";
+
+	private static final String URI_END = "mock:result";
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.apache.camel.test.blueprint.CamelBlueprintTestSupport#
+	 * getBlueprintDescriptor()
+	 */
+	@Override
+	protected String getBlueprintDescriptor() {
+		return "/OSGI-INF/blueprint/blueprint-simulador21d.xml";
+	}
+
+	@Test
+	public void loadTest1() throws Exception {
+		MockEndpoint result = getMockEndpoint(URI_END);
+		context.start();
+
+		result.expectedMessageCount(15);
+
+		result.assertIsSatisfied();
+
+		context.stop();
+	}
+}
