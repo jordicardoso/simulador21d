@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Project -->
-	<groupId>cat.tcr.simulador</groupId>
+	<groupId>cat.tcr.eleccions21d</groupId>
 	<artifactId>simulador21d</artifactId>
 	<packaging>bundle</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>simulador21d</name>
+	<name>simulador</name>
 
 	<!-- Properties -->
 	<properties>
@@ -26,6 +26,7 @@
 
 		<camel-version>2.20.1</camel-version>
 		<slf4j-version>1.7.12</slf4j-version>
+		<slf4j-log4j2-version>2.0.1</slf4j-log4j2-version>
 		<log4j-version>1.2.17</log4j-version>
 		<xom-version>1.2.5</xom-version>
 		<json-simple-version>1.1.1</json-simple-version>
@@ -77,7 +78,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-jolt</artifactId>
+			<artifactId>camel-spring</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
 		<dependency>
@@ -85,28 +86,41 @@
 			<artifactId>camel-jsonpath</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
+		<!--  need this dependencies for the cmd camel:run  -->
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm-commons</artifactId>
 			<version>5.0.3</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>5.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>5.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
 
-		<!-- Log -->
+		<!--  logging  -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j-version}</version>
+			<version>1.7.12</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j-version}</version>
+			<version>1.7.12</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4j-version}</version>
+			<version>1.2.17</version>
 		</dependency>
 
 		<!-- xom -->
@@ -124,18 +138,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-jetty9</artifactId>
-			<version>${camel-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-http4</artifactId>
-			<version>${camel-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>${json-simple-version}</version>
@@ -146,84 +148,50 @@
 
 	<!-- Build -->
 	<build>
-
 		<defaultGoal>install</defaultGoal>
-
 		<plugins>
-
-			<!-- maven-compiler -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin-version}</version>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 			</plugin>
-
-			<!-- maven resources -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven-resources-plugin-version}</version>
-			</plugin>
-
-			<!-- OSGI: Generate the MANIFEST-FILE of the bundle -->
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>${maven-bundle-plugin-version}</version>
-				<extensions>true</extensions>
+				<version>2.6</version>
 				<configuration>
-					<instructions>
-						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Private-Package>cat.tcr.simulador.simulador21d.*</Private-Package>
-						<Import-Package>*</Import-Package>
-					</instructions>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 
-			<!-- To run the example using mvn camel:run -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Name>${project.artifactId}</Bundle-Name>
+						<Bundle-Version>1.0</Bundle-Version>
+						<Import-Package>*</Import-Package>
+						<Private-Package>cat.tcr.eleccions21d.*</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<!--  Allows the routes to be run via 'mvn camel:run'  -->
 			<plugin>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-maven-plugin</artifactId>
-				<version>${camel-version}</version>
+				<version>2.20.1</version>
 				<configuration>
 					<useBlueprint>true</useBlueprint>
 				</configuration>
 			</plugin>
-
-			<!-- maven-surefire -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin-version}</version>
-				<configuration>
-					<excludes>
-						<exclude>**/*ITest.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-
-			<!-- maven-failsafe -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>${maven-failsafe-plugin-version}</version>
-				<configuration>
-					<includes>
-						<include>**/*ITest.java</include>
-					</includes>
-					<parallel>methods</parallel>
-					<threadCount>10</threadCount>
-				</configuration>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
 

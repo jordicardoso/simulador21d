@@ -44,7 +44,7 @@
 			</setBody>
 			<log message="${body}"/>
 			<setHeader headerName="indexName"><simple>21d-${date:now:yyyy-MM-dd}</simple></setHeader>
-			<to uri="elasticsearch5://elasticsearch?ip=127.0.0.1&amp;operation=INDEX&amp;indexType=totals"/>
+			<to uri="{{elasticsearch}}"/>
 		</route>
 
 	</camelContext>
