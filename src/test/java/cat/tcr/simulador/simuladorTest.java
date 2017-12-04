@@ -2,8 +2,6 @@ package cat.tcr.simulador;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.component.mock.MockEndpoint;

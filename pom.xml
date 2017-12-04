@@ -67,12 +67,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-groovy</artifactId>
-			<version>${camel-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-xmljson</artifactId>
+			<artifactId>camel-elasticsearch5</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
 		<dependency>

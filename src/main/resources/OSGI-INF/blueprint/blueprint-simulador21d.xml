@@ -6,6 +6,7 @@
 
 	<bean id="random" class="random.rndResultats"/>
 	<bean id="splitterUri" class="uriHeader.splitter"/>
+	<bean id="jsonResult" class="jsonResult.totals"/>
 
 	<camelContext id="simulador21d"
 		xmlns="http://camel.apache.org/schema/blueprint" useMDCLogging="true">
@@ -37,9 +38,13 @@
 				<csv delimiter=";" />
 			</unmarshal>
 			<bean ref="splitterUri"/>
-			<log message="headers: ${headers}"/>
+			<!--<bean ref="jsonResult"/>-->
+			<setBody>
+				<simple>{"provincia":"${headers.provincia}","municipi":"${headers.municipi}","collegi":"${headers.collegi}","mesa":"${headers.mesa}","${body[2][0]}":${body[2][1]},"${body[3][0]}":${body[3][1]},"${body[4][0]}":${body[4][1]},"${body[5][0]}":${body[5][1]},"${body[6][0]}":${body[6][1]},"${body[7][0]}":${body[7][1]},"${body[8][0]}":${body[8][1]},"${body[9][0]}":${body[9][1]},"${body[10][0]}":${body[10][1]},"${body[11][0]}":${body[11][1]},"${body[12][0]}":${body[12][1]},"${body[13][0]}":${body[13][1]},"${body[14][0]}":${body[14][1]}}</simple>
+			</setBody>
 			<log message="${body}"/>
-			<to uri="mock:result"/>
+			<setHeader headerName="indexName"><simple>21d-${date:now:yyyy-MM-dd}</simple></setHeader>
+			<to uri="elasticsearch5://elasticsearch?ip=127.0.0.1&amp;operation=INDEX&amp;indexType=totals"/>
 		</route>
 
 	</camelContext>

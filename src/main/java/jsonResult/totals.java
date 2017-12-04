@@ -1,8 +1,12 @@
 package jsonResult;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 public class totals {
 
@@ -10,19 +14,17 @@ public class totals {
 
     public void process(Exchange exchange) throws Exception {
 
-        String uri = (String) exchange.getIn().getHeader("CamelFileName");
+        List<List<String>> data = (List<List<String>>) exchange.getIn().getBody();
 
-        String[] parts = uri.split("\\\\");
-        String provincia = parts[0];
-        String municipi = parts[1];
-        String collegi = parts[2];
-        String mesa = parts[3];
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ObjectMapper mapper = new ObjectMapper();
+
+        mapper.writeValue(out, data);
+
+        final byte[] finaldata = out.toByteArray();
+        LOG.info(new String(finaldata));
 
         exchange.getOut().setHeaders(exchange.getIn().getHeaders());
-        exchange.getOut().setHeader("provincia", provincia);
-        exchange.getOut().setHeader("municipi", municipi);
-        exchange.getOut().setHeader("collegi", collegi);
-        exchange.getOut().setHeader("mesa", mesa);
         exchange.getOut().setBody(exchange.getIn().getBody());
     }
 }
