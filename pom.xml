@@ -8,7 +8,7 @@
 	<groupId>cat.tcr.eleccions21d</groupId>
 	<artifactId>simulador21d</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>simulador</name>
 
 	<!-- Properties -->
@@ -54,6 +54,11 @@
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jackson</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-geocoder</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
 		<dependency>
@@ -150,6 +155,15 @@
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
+			<!--  Allows the routes to be run via 'mvn camel:run'  -->
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-maven-plugin</artifactId>
+				<version>2.20.1</version>
+				<configuration>
+					<useBlueprint>true</useBlueprint>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -181,15 +195,6 @@
 						<Import-Package>*</Import-Package>
 						<Private-Package>cat.tcr.eleccions21d.*</Private-Package>
 					</instructions>
-				</configuration>
-			</plugin>
-			<!--  Allows the routes to be run via 'mvn camel:run'  -->
-			<plugin>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-maven-plugin</artifactId>
-				<version>2.20.1</version>
-				<configuration>
-					<useBlueprint>true</useBlueprint>
 				</configuration>
 			</plugin>
 		</plugins>
