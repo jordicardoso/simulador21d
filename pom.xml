@@ -8,7 +8,7 @@
 	<groupId>cat.tcr.eleccions21d</groupId>
 	<artifactId>simulador21d</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>simulador</name>
 
 	<!-- Properties -->
@@ -181,7 +181,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -189,9 +188,9 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-						<Bundle-Name>${project.artifactId}</Bundle-Name>
-						<Bundle-Version>1.0</Bundle-Version>
+						<Bundle-SymbolicName>simulador21d</Bundle-SymbolicName>
+						<Bundle-Name>simulador21d</Bundle-Name>
+						<Bundle-Version>0.0.2</Bundle-Version>
 						<Import-Package>*</Import-Package>
 						<Private-Package>cat.tcr.eleccions21d.*</Private-Package>
 					</instructions>

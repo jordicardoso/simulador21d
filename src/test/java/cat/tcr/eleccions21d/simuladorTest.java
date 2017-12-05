@@ -11,38 +11,34 @@ import org.junit.Test;
 
 import java.io.InputStream;
 
-/**
- * The Class itemOSPTest.
- */
 public class simuladorTest extends CamelBlueprintTestSupport {
 
 	private static final String URI_START = "direct:start";
 
 	private static final String URI_END = "mock:result";
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.camel.test.blueprint.CamelBlueprintTestSupport#
-	 * getBlueprintDescriptor()
-	 */
 	@Override
 	protected String getBlueprintDescriptor() {
 		return "/OSGI-INF/blueprint/blueprint-simulador21d.xml";
 	}
 
 	@Test
-	public void totals2elasticTEST() throws Exception {
+	public void randomizeTEST() throws Exception {
 		MockEndpoint result = getMockEndpoint(URI_END);
 
-		final Long someValue = 6000000000L;
-		System.setProperty(
-				CamelBlueprintTestSupport.SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT,
-				someValue.toString());
+		context.start();
+		result.expectedMessageCount(50);
+		result.assertIsSatisfied();
+		context.stop();
+	}
+
+	@Test
+	public void elasticTEST() throws Exception {
+		MockEndpoint result = getMockEndpoint(URI_END);
 
 		context.start();
-
 		//result.expectedMessageCount(15);
-		result.assertIsSatisfied();
+		//result.assertIsSatisfied();
+		//context.stop();
 	}
 }

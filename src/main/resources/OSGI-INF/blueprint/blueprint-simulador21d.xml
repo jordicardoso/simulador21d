@@ -23,16 +23,16 @@
 			<bindy id="csv" type="Csv" classType="csv.Resultats"/>
 		</dataFormats>
 
-		<route autoStartup="false" id="randomResultats" streamCache="true">
+		<route autoStartup="true" id="randomResultats" streamCache="true">
 			<from uri="{{origen}}"/>
 			<unmarshal ref="csv"/>
 			<process ref="random"/>
-			<marshal ref="json"/>
+			<marshal ref="csv"/>
 			<log message="${headers.CamelFileParent}"/>
 			<toD uri="{{desti}}"/>
 		</route>
 
-		<route autoStartup="true" id="Resultats2elastic" streamCache="true">
+		<route autoStartup="false" id="resultats2elastic" streamCache="true">
 			<from uri="{{resultats}}"/>
 			<unmarshal>
 				<csv delimiter=";" />
