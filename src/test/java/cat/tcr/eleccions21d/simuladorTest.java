@@ -37,8 +37,8 @@ public class simuladorTest extends CamelBlueprintTestSupport {
 		MockEndpoint result = getMockEndpoint(URI_END);
 
 		context.start();
-		//result.expectedMessageCount(15);
-		//result.assertIsSatisfied();
-		//context.stop();
+		result.expectedMessageCount(150);
+		result.assertIsSatisfied();
+		context.stop();
 	}
 }
