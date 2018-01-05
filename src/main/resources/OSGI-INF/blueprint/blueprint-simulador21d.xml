@@ -8,6 +8,20 @@
 	<bean id="splitterUri" class="uriHeader.splitter"/>
 	<bean id="jsonResult" class="jsonResult.totals"/>
 
+	<bean id="votesds" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+		<property name="url" value="jdbc:derby:memory:votes;create=true"/>
+		<property name="username" value=""/>
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="initDatabase" class="DatabaseBean"
+		  init-method="create" destroy-method="destroy">
+		<property name="dataSource" ref="votesds"/>
+	</bean>
+
+	<bean id="databaseBean" class="DatabaseBean"/>
+
 	<camelContext id="simulador21d"
 		xmlns="http://camel.apache.org/schema/blueprint" useMDCLogging="true">
 
@@ -23,7 +37,7 @@
 			<bindy id="csv" type="Csv" classType="csv.Resultats"/>
 		</dataFormats>
 
-		<route autoStartup="false" id="randomResultats" streamCache="true">
+		<route autoStartup="false" id="loadResultats" streamCache="true">
 			<from uri="{{origen}}"/>
 			<unmarshal ref="csv"/>
 			<process ref="random"/>
@@ -31,7 +45,8 @@
 			<log message="${headers.CamelFileParent}"/>
 			<toD uri="{{desti}}"/>
 		</route>
-
+		-->
+		<!--
 		<route autoStartup="true" id="resultats2elastic" streamCache="true">
 			<from uri="{{resultats}}"/>
 			<unmarshal>
@@ -53,5 +68,6 @@
 				<to uri="{{elasticsearch}}"/>
 			</loop>
 		</route>
+		-->
 	</camelContext>
 </blueprint>

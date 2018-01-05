@@ -1,6 +1,6 @@
 package random;
 
-import csv.Resultats;
+import csv.resultats;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.slf4j.Logger;
@@ -16,16 +16,16 @@ public class rndResultats implements Processor {
 
     public void process(Exchange exchange) throws Exception {
 
-        List<csv.Resultats> totals = (List<csv.Resultats>) exchange.getIn().getBody();
+        List<csv.resultats> totals = (List<csv.resultats>) exchange.getIn().getBody();
 
-        for (csv.Resultats candidatura : totals) {
+        for (csv.resultats candidatura : totals) {
             Object obj = candidatura.getCandidatura();
             String codart = obj.toString();
             Random randomGenerator = new Random();
 
             if (!candidatura.getCandidatura().equals("CENS") && !candidatura.getCandidatura().equals("VOTANTS")){
                 Integer totalCandidat = randomGenerator.nextInt(1000);
-                candidatura.setResultat(totalCandidat.toString());
+                candidatura.setresultat(totalCandidat.toString());
             }
             else{
                 candidatura.setResultat("0");
