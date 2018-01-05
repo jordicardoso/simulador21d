@@ -37,15 +37,34 @@
 			<bindy id="csv" type="Csv" classType="csv.Resultats"/>
 		</dataFormats>
 
+		<route autoStartup="true" id="routeControlBus">
+			<from uri="timer:foo?repeatCount=1"/>
+			<to uri="controlbus:route?routeId=loadMeses&amp;action=start" />
+			<to uri="controlbus:route?routeId=loadResultats&amp;action=start" />
+			<delay asyncDelayed="true">
+				<constant>1000</constant>
+			</delay>
+			<to uri="controlbus:route?routeId=loadMeses&amp;action=stop" />
+			<to uri="controlbus:route?routeId=loadResultats&amp;action=stop" />
+		</route>
+
 		<route autoStartup="false" id="loadResultats" streamCache="true">
-			<from uri="{{origen}}"/>
+			<from uri="{{resultatscsv}}"/>
+			<unmarshal ref="csv"/>
+			<process ref="random"/>
+			<marshal ref="csv"/>
+			<log message="${headers.CamelFileParent}"/>
+		</route>
+
+		<route autoStartup="false" id="loadMeses" streamCache="true">
+			<from uri="{{resultatscsv}}"/>
 			<unmarshal ref="csv"/>
 			<process ref="random"/>
 			<marshal ref="csv"/>
 			<log message="${headers.CamelFileParent}"/>
 			<toD uri="{{desti}}"/>
 		</route>
-		-->
+
 		<!--
 		<route autoStartup="true" id="resultats2elastic" streamCache="true">
 			<from uri="{{resultats}}"/>
