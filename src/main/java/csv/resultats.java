@@ -6,67 +6,78 @@ import org.apache.camel.dataformat.bindy.annotation.DataField;
 @CsvRecord(separator = ";")
 public class resultats {
     @DataField(pos = 1)
-    private String idmesa;
+    private String codprov;
     @DataField(pos = 2)
-    private String codimesa;
+    private String idmesa;
     @DataField(pos = 3)
-    private String mesatancada;
+    private String codimesa;
     @DataField(pos = 4)
-    private String comarca;
+    private String mesatancada;
     @DataField(pos = 5)
-    private String vnuls;
+    private String comarca;
     @DataField(pos = 6)
-    private String vblancs;
+    private Integer vnuls = 0;
     @DataField(pos = 7)
-    private String verc;
+    private Integer vblancs = 0;
     @DataField(pos = 8)
-    private String vjxc;
+    private Integer verc = 0;
     @DataField(pos = 9)
-    private String vcup;
+    private Integer vjxc = 0;
     @DataField(pos = 10)
-    private String vpsc;
+    private Integer vcup = 0;
     @DataField(pos = 11)
-    private String vcs;
+    private Integer vpsc = 0;
     @DataField(pos = 12)
-    private String vppc;
+    private Integer vcs = 0;
     @DataField(pos = 13)
-    private String vcom;
+    private Integer vppc = 0;
     @DataField(pos = 14)
-    private String vpacma;
+    private Integer vcom = 0;
     @DataField(pos = 15)
-    private String vdialeg;
+    private Integer vpacma = 0;
     @DataField(pos = 16)
-    private String vpumjust;
+    private Integer vdialeg = 0;
     @DataField(pos = 17)
-    private String vrecortes;
+    private Integer vpumjust = 0;
     @DataField(pos = 18)
-    private String vfamilia;
+    private Integer vrecortes = 0;
     @DataField(pos = 19)
-    private String vdn;
+    private Integer vfamilia = 0;
     @DataField(pos = 20)
-    private String vpfiv;
+    private Integer vdn = 0;
     @DataField(pos = 21)
-    private String vconver;
+    private Integer vpfiv = 0;
     @DataField(pos = 22)
-    private String vunidos;
+    private Integer vconver = 0;
     @DataField(pos = 23)
-    private String vcilus;
+    private Integer vunidos = 0;
     @DataField(pos = 24)
-    private String cens;
+    private Integer vcilus = 0;
     @DataField(pos = 25)
-    private String acta;
+    private Integer cens = 0;
     @DataField(pos = 26)
-    private String hihavots;
+    private String acta;
     @DataField(pos = 27)
-    private String hihaacta;
+    private String hihavots;
     @DataField(pos = 28)
-    private String origen;
+    private String hihaacta;
     @DataField(pos = 29)
-    private String datetime;
+    private String origen;
     @DataField(pos = 30)
+    private String datetime;
+    @DataField(pos = 31)
     private String user;
+    @DataField(pos = 32)
+    private String nobody;
 
 
+    public String getcodprov() {
+        return codprov;
+    }
+
+    public void setcodprov(String codprov) {
+        this.codprov = codprov;
+    }
 
     public String getidmesa() {
         return idmesa;
@@ -100,163 +111,223 @@ public class resultats {
         this.comarca = comarca;
     }
 
-    public String getvnuls() {
+    public Integer getvnuls() {
+        if(vnuls == null){
+            return 0;
+        }
         return vnuls;
     }
 
-    public void setvnuls(String vnuls) {
+    public void setvnuls(Integer vnuls) {
         this.vnuls = vnuls;
     }
 
-    public String getvblancs() {
+    public Integer getvblancs() {
+        if(vblancs == null){
+            return 0;
+        }
         return vblancs;
     }
 
-    public void setvblancs(String vblancs) {
+    public void setvblancs(Integer vblancs) {
         this.vblancs = vblancs;
     }
 
-    public String getverc() {
+    public Integer getverc() {
+        if(verc == null){
+            return 0;
+        }
         return verc;
     }
 
-    public void setverc(String verc) {
+    public void setverc(Integer verc) {
         this.verc = verc;
     }
 
-    public String getvjxc() {
+    public Integer getvjxc() {
+        if(vjxc == null){
+            return 0;
+        }
         return vjxc;
     }
 
-    public void setvjxc(String vjxc) {
+    public void setvjxc(Integer vjxc) {
         this.vjxc = vjxc;
     }
 
-    public String getvcup() {
+    public Integer getvcup() {
+        if(vcup == null){
+            return 0;
+        }
         return vcup;
     }
 
-    public void setvcup(String vcup) {
+    public void setvcup(Integer vcup) {
         this.vcup = vcup;
     }
 
-    public String getvpsc() {
+    public Integer getvpsc() {
+        if(vpsc == null){
+            return 0;
+        }
         return vpsc;
     }
 
-    public void setvpsc(String vpsc) {
+    public void setvpsc(Integer vpsc) {
         this.vpsc = vpsc;
     }
 
-    public String getvcs() {
+    public Integer getvcs() {
+        if(vcs == null){
+            return 0;
+        }
         return vcs;
     }
 
-    public void setvcs(String vcs) {
+    public void setvcs(Integer vcs) {
         this.vcs = vcs;
     }
 
-    public String getvppc() {
+    public Integer getvppc() {
+        if(vppc == null){
+            return 0;
+        }
         return vppc;
     }
 
-    public void setvppc(String vppc) {
+    public void setvppc(Integer vppc) {
         this.vppc = vppc;
     }
 
-    public String getvcom() {
+    public Integer getvcom() {
+        if(vcom == null){
+            return 0;
+        }
         return vcom;
     }
 
-    public void setvcom(String vcom) {
+    public void setvcom(Integer vcom) {
         this.vcom = vcom;
     }
 
-    public String getvpacma() {
+    public Integer getvpacma() {
+        if(vpacma == null){
+            return 0;
+        }
         return vpacma;
     }
 
-    public void setvpacma(String vpacma) {
+    public void setvpacma(Integer vpacma) {
         this.vpacma = vpacma;
     }
 
-    public String getvdialeg() {
+    public Integer getvdialeg() {
+        if(vdialeg == null){
+            return 0;
+        }
         return vdialeg;
     }
 
-    public void setvdialeg(String vdialeg) {
+    public void setvdialeg(Integer vdialeg) {
         this.vdialeg = vdialeg;
     }
 
-    public String getvpumjust() {
+    public Integer getvpumjust() {
+        if(vpumjust == null){
+            return 0;
+        }
         return vpumjust;
     }
 
-    public void setvpumjust(String vpumjust) {
+    public void setvpumjust(Integer vpumjust) {
         this.vpumjust = vpumjust;
     }
 
-    public String getvrecortes() {
+    public Integer getvrecortes() {
+        if(vrecortes == null){
+            return 0;
+        }
         return vrecortes;
     }
 
-    public void setvrecortes(String vrecortes) {
+    public void setvrecortes(Integer vrecortes) {
         this.vrecortes = vrecortes;
     }
 
-    public String getvfamilia() {
+    public Integer getvfamilia() {
+        if(vfamilia == null){
+            return 0;
+        }
         return vfamilia;
     }
 
-    public void setvfamilia(String vfamilia) {
+    public void setvfamilia(Integer vfamilia) {
         this.vfamilia = vfamilia;
     }
 
-    public String getvdn() {
+    public Integer getvdn() {
+        if(vdn == null){
+            return 0;
+        }
         return vdn;
     }
 
-    public void setvdn(String vdn) {
+    public void setvdn(Integer vdn) {
         this.vdn = vdn;
     }
 
-    public String getvpfiv() {
+    public Integer getvpfiv() {
+        if(vpfiv == null){
+            return 0;
+        }
         return vpfiv;
     }
 
-    public void setvpfiv(String vpfiv) {
+    public void setvpfiv(Integer vpfiv) {
         this.vpfiv = vpfiv;
     }
 
-    public String getvconver() {
+    public Integer getvconver() {
+        if(vconver == null){
+            return 0;
+        }
         return vconver;
     }
 
-    public void setvconver(String vconver) {
+    public void setvconver(Integer vconver) {
         this.vconver = vconver;
     }
 
-    public String getvunidos() {
+    public Integer getvunidos() {
+        if(vunidos == null){
+            return 0;
+        }
         return vunidos;
     }
 
-    public void setvunidos(String vunidos) {
+    public void setvunidos(Integer vunidos) {
         this.vunidos = vunidos;
     }
 
-    public String getvcilus() {
+    public Integer getvcilus() {
+        if(vcilus == null){
+            return 0;
+        }
         return vcilus;
     }
 
-    public void setvcilus(String vcilus) {
+    public void setvcilus(Integer vcilus) {
         this.vcilus = vcilus;
     }
 
-    public String getcens() {
+    public Integer getcens() {
+        if(cens == null){
+            return 0;
+        }
         return cens;
     }
 
-    public void setcens(String cens) {
+    public void setcens(Integer cens) {
         this.cens = cens;
     }
 
@@ -306,5 +377,13 @@ public class resultats {
 
     public void setuser(String user) {
         this.user = user;
+    }
+
+    public String getnobody() {
+        return nobody;
+    }
+
+    public void setnobody(String nobody) {
+        this.nobody = nobody;
     }
 }

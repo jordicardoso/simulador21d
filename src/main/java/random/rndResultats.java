@@ -18,6 +18,7 @@ public class rndResultats implements Processor {
 
         List<csv.resultats> totals = (List<csv.resultats>) exchange.getIn().getBody();
 
+        /*
         for (csv.resultats candidatura : totals) {
             Object obj = candidatura.getCandidatura();
             String codart = obj.toString();
@@ -30,7 +31,7 @@ public class rndResultats implements Processor {
             else{
                 candidatura.setResultat("0");
             }
-        }
+        }*/
         exchange.getOut().setHeaders(exchange.getIn().getHeaders());
         exchange.getOut().setBody(totals);
     }
