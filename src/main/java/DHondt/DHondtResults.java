@@ -1,18 +1,36 @@
 package DHondt;
 
+import org.apache.camel.Processor;
+import org.apache.camel.Exchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import random.rndResultats;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.lang.String;
+import java.util.stream.Collectors;
+import java.util.regex.Pattern;
 
 
-public class DHondtResults {
-    public static List<Integer> compute(List<Integer> votes, int mandateCount) {
-        List<Integer> mandates = createMandatesList(votes.size());
+public class DHondtResults implements Processor {
 
-        for (int i = 0; i < mandateCount; i++) {
-            computeRound(votes, mandates);
+    private static Logger LOG = LoggerFactory.getLogger(rndResultats.class);
+
+    public void process(Exchange exchange) throws Exception {
+
+        String escons = (String) exchange.getIn().getHeader("escons");
+        List<Integer> vots = (List<Integer>) exchange.getIn().getBody();
+        Integer mandatecount = Integer.parseInt(escons);
+        List<Integer> mandates = createMandatesList(vots.size());
+
+        for (int i = 0; i < mandatecount; i++) {
+            computeRound(vots, mandates);
         }
 
-        return mandates;
+        exchange.getOut().setHeaders(exchange.getIn().getHeaders());
+        exchange.getOut().setBody(mandates);
     }
 
     private static void computeRound(List<Integer> votes, List<Integer> mandates) {

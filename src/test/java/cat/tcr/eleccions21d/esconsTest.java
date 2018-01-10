@@ -13,7 +13,7 @@ import java.util.List;
 
 import java.io.InputStream;
 
-public class simuladorTest extends CamelBlueprintTestSupport {
+public class esconsTest extends CamelBlueprintTestSupport {
 
 	private static final String URI_START = "direct:start";
 
@@ -21,7 +21,7 @@ public class simuladorTest extends CamelBlueprintTestSupport {
 
 	@Override
 	protected String getBlueprintDescriptor() {
-		return "/OSGI-INF/blueprint/blueprint-simulador21d.xml";
+		return "/OSGI-INF/blueprint/blueprint-escons21d.xml";
 	}
 
 	/*
@@ -33,8 +33,8 @@ public class simuladorTest extends CamelBlueprintTestSupport {
 		result.expectedMessageCount(50);
 		result.assertIsSatisfied();
 		context.stop();
-	}
-	*/
+	}*/
+
 	@Test
 	public void esconsTEST() throws Exception {
 		MockEndpoint result = getMockEndpoint(URI_END);
@@ -45,6 +45,7 @@ public class simuladorTest extends CamelBlueprintTestSupport {
 		context.stop();
 	}
 
+	/*
 	@Test
 	public void DHondtTESTBCN() throws Exception {
 		List<Integer> votes = new ArrayList<Integer>();
@@ -134,5 +135,5 @@ public class simuladorTest extends CamelBlueprintTestSupport {
 
 		List<Integer> mandates = DHondt.DHondtResults.compute(votes, 18);
 		System.out.println(mandates);
-	}
+	}*/
 }

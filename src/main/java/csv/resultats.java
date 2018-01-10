@@ -3,81 +3,70 @@ package csv;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
-@CsvRecord(separator = ";")
+@CsvRecord(separator = ",")
 public class resultats {
     @DataField(pos = 1)
-    private String codprov;
-    @DataField(pos = 2)
     private String idmesa;
-    @DataField(pos = 3)
+    @DataField(pos = 2)
     private String codimesa;
-    @DataField(pos = 4)
+    @DataField(pos = 3)
     private String mesatancada;
-    @DataField(pos = 5)
+    @DataField(pos = 4)
     private String comarca;
-    @DataField(pos = 6)
+    @DataField(pos = 5)
     private Integer vnuls = 0;
-    @DataField(pos = 7)
+    @DataField(pos = 6)
     private Integer vblancs = 0;
-    @DataField(pos = 8)
+    @DataField(pos = 7)
     private Integer verc = 0;
-    @DataField(pos = 9)
+    @DataField(pos = 8)
     private Integer vjxc = 0;
-    @DataField(pos = 10)
+    @DataField(pos = 9)
     private Integer vcup = 0;
-    @DataField(pos = 11)
+    @DataField(pos = 10)
     private Integer vpsc = 0;
-    @DataField(pos = 12)
+    @DataField(pos = 11)
     private Integer vcs = 0;
-    @DataField(pos = 13)
+    @DataField(pos = 12)
     private Integer vppc = 0;
-    @DataField(pos = 14)
+    @DataField(pos = 13)
     private Integer vcom = 0;
-    @DataField(pos = 15)
+    @DataField(pos = 14)
     private Integer vpacma = 0;
-    @DataField(pos = 16)
+    @DataField(pos = 15)
     private Integer vdialeg = 0;
-    @DataField(pos = 17)
+    @DataField(pos = 16)
     private Integer vpumjust = 0;
-    @DataField(pos = 18)
+    @DataField(pos = 17)
     private Integer vrecortes = 0;
-    @DataField(pos = 19)
+    @DataField(pos = 18)
     private Integer vfamilia = 0;
-    @DataField(pos = 20)
+    @DataField(pos = 19)
     private Integer vdn = 0;
-    @DataField(pos = 21)
+    @DataField(pos = 20)
     private Integer vpfiv = 0;
-    @DataField(pos = 22)
+    @DataField(pos = 21)
     private Integer vconver = 0;
-    @DataField(pos = 23)
+    @DataField(pos = 22)
     private Integer vunidos = 0;
-    @DataField(pos = 24)
+    @DataField(pos = 23)
     private Integer vcilus = 0;
-    @DataField(pos = 25)
+    @DataField(pos = 24)
     private Integer cens = 0;
-    @DataField(pos = 26)
+    @DataField(pos = 25)
     private String acta;
-    @DataField(pos = 27)
+    @DataField(pos = 26)
     private String hihavots;
-    @DataField(pos = 28)
+    @DataField(pos = 27)
     private String hihaacta;
-    @DataField(pos = 29)
+    @DataField(pos = 28)
     private String origen;
-    @DataField(pos = 30)
+    @DataField(pos = 29)
     private String datetime;
-    @DataField(pos = 31)
+    @DataField(pos = 30)
     private String user;
     /*@DataField(pos = 32)
     private String nobody;*/
-
-
-    public String getcodprov() {
-        return codprov;
-    }
-
-    public void setcodprov(String codprov) {
-        this.codprov = codprov;
-    }
 
     public String getidmesa() {
         return idmesa;
