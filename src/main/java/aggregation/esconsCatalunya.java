@@ -21,7 +21,7 @@ public class esconsCatalunya implements AggregationStrategy {
                 .mapToObj(i -> oldBody.get(i) + newBody.get(i))
                 .collect(Collectors.toList());
 
-        oldExchange.getIn().setBody(result);
+        oldExchange.getOut().setBody(result);
 
         return oldExchange;
     }

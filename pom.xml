@@ -6,9 +6,9 @@
 
 	<!-- Project -->
 	<groupId>cat.tcr.eleccions21d</groupId>
-	<artifactId>simulador21d</artifactId>
+	<artifactId>escons21d</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<name>simulador</name>
 
 	<!-- Properties -->

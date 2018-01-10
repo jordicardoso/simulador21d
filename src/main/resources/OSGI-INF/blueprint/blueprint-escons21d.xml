@@ -93,7 +93,7 @@
 						<setHeader headerName="Recortes">
 							<simple>${body[9]}</simple>
 						</setHeader>
-
+						<log message="Barcelona: ${body}"/>
 						<to uri="seda:esconsCatalunya"/>
 						<to uri="velocity:json.vm"/>
 						<to uri="file:camel/resultats?fileName=esconsBarcelona.json"/>
@@ -137,7 +137,7 @@
 						<setHeader headerName="Recortes">
 							<simple>${body[9]}</simple>
 						</setHeader>
-
+						<log message="Girona: ${body}"/>
 						<to uri="seda:esconsCatalunya"/>
 						<to uri="velocity:json.vm"/>
 						<to uri="file:camel/resultats?fileName=esconsGirona.json"/>
@@ -181,7 +181,7 @@
 						<setHeader headerName="Recortes">
 							<simple>${body[9]}</simple>
 						</setHeader>
-
+						<log message="Lleida: ${body}"/>
 						<to uri="seda:esconsCatalunya"/>
 						<to uri="velocity:json.vm"/>
 						<to uri="file:camel/resultats?fileName=esconsLleida.json"/>
@@ -225,7 +225,7 @@
 						<setHeader headerName="Recortes">
 							<simple>${body[9]}</simple>
 						</setHeader>
-
+						<log message="Tarragona: ${body}"/>
 						<to uri="seda:esconsCatalunya"/>
 						<to uri="velocity:json.vm"/>
 						<to uri="file:camel/resultats?fileName=esconsTarragona.json"/>
@@ -236,11 +236,44 @@
 
 		<route autoStartup="true" id="esconsCatalunya" streamCache="true">
 			<from uri="seda:esconsCatalunya"/>
-			<log message="esconsCatalunya:${body}"/>
 			<aggregate strategyRef="esconsCatalunya" completionSize="4">
 				<correlationExpression>
 					<constant>true</constant>
 				</correlationExpression>
+				<setHeader headerName="JxC">
+					<simple>${body[0]}</simple>
+				</setHeader>
+				<setHeader headerName="ERC">
+					<simple>${body[1]}</simple>
+				</setHeader>
+				<setHeader headerName="CUP">
+					<simple>${body[2]}</simple>
+				</setHeader>
+				<setHeader headerName="Cs">
+					<simple>${body[3]}</simple>
+				</setHeader>
+				<setHeader headerName="PSC">
+					<simple>${body[4]}</simple>
+				</setHeader>
+				<setHeader headerName="Comuns">
+					<simple>${body[5]}</simple>
+				</setHeader>
+				<setHeader headerName="PP">
+					<simple>${body[6]}</simple>
+				</setHeader>
+				<setHeader headerName="PACMA">
+					<simple>${body[7]}</simple>
+				</setHeader>
+				<setHeader headerName="pumj">
+					<simple>${body[8]}</simple>
+				</setHeader>
+				<setHeader headerName="Recortes">
+					<simple>${body[9]}</simple>
+				</setHeader>
+				<setHeader headerName="JxC">
+					<simple>${body[0]}</simple>
+				</setHeader>
+				<log message="esconsCatalunya:${body}"/>
 				<to uri="velocity:json.vm"/>
 				<to uri="file:camel/resultats?fileName=esconsCatalunya.json"/>
 			</aggregate>
