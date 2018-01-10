@@ -67,8 +67,8 @@ public class resultats {
     private String datetime;
     @DataField(pos = 31)
     private String user;
-    @DataField(pos = 32)
-    private String nobody;
+    /*@DataField(pos = 32)
+    private String nobody;*/
 
 
     public String getcodprov() {
@@ -378,12 +378,12 @@ public class resultats {
     public void setuser(String user) {
         this.user = user;
     }
-
+/*
     public String getnobody() {
         return nobody;
     }
 
     public void setnobody(String nobody) {
         this.nobody = nobody;
-    }
+    }*/
 }
